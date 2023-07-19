@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import LeftSection from './containers/LeftSection'
+import RightSection from './containers/RightSection'
+import MainSection from './containers/MainSection'
 
 const WebPlayback = (props) => {
     // const [is_paused, setPaused] = useState(false)
@@ -33,10 +36,10 @@ const WebPlayback = (props) => {
     }, [])
     return (
         <>
-            <div className="container">
-                <div className="main-wrapper">
-
-                </div>
+            <div className="app">
+                <LeftSection/>
+                <MainSection/>
+                <RightSection/>
             </div>
         </>
     )

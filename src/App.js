@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import './index.css'
-import WebPlayback from './components/Webplayback'
+import WebPlayback from './Webplayback'
 
 const App = () =>  {
     const [token, setToken] = useState('')
@@ -16,7 +16,7 @@ const App = () =>  {
         getToken()
     }, [])
     return (
-        <div className='app'>
+        <div>
             {(token === '') ? <Login/> : <WebPlayback token={token}/>}
         </div>
     )

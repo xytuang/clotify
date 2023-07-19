@@ -2,7 +2,13 @@ import { TiHome } from 'react-icons/ti'
 import {FaMagnifyingGlass} from 'react-icons/fa6'
 import { BiLibrary } from 'react-icons/bi'
 
+import { setView, uiReducer } from '../reducers/uiReducer'
+import { useDispatch } from 'react-redux'
+
 const LeftSection = () => {
+    const dispatch = useDispatch()
+
+    
     return (
         <div>
             <div>
