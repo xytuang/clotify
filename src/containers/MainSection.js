@@ -1,12 +1,14 @@
-// import { useState } from 'react'
+
 import PropTypes from 'prop-types'
 import Discover from '../components/Discover/Discover'
 import RecentlyPlayed from '../components/RecentlyPlayed/RecentlyPlayed'
 import { useSelector } from 'react-redux'
 
 
-const Home = ({show}) => {
-    const recentlyPlayed = ['song 1', 'song 2', 'song 3', 'song 4', 'song 5', 'song 6']
+
+const Home = ({show, token}) => {
+   
+    
     const madeFor = ['daily mix 1', 'daily mix 2', 'daily mix 3', 'daily mix 4', 'daily mix 5']
     if (show !== 'home'){
         return (
@@ -16,7 +18,7 @@ const Home = ({show}) => {
     }
     return (
         <div className='mainSection'>
-            <RecentlyPlayed recentlyPlayed={recentlyPlayed}/>
+            <RecentlyPlayed token={token}/>
             <Discover madeFor={madeFor}/>
         </div>
     )
@@ -35,12 +37,12 @@ const Search = ({show}) => {
 }
 
 
-const MainSection = () => {
+const MainSection = ({token}) => {
     const uiView = useSelector(state => state.uiView)
 
     return (
         <div>
-            <Home show={uiView.view}/>
+            <Home show={uiView.view} token={token}/>
             <Search show={uiView.view}/>
         </div>
     )
@@ -48,11 +50,17 @@ const MainSection = () => {
 }
 
 Home.propTypes = {
-    show: PropTypes.string.isRequired
+    show: PropTypes.string.isRequired,
+    token: PropTypes.string.isRequired
 }
 
 Search.propTypes = {
     show: PropTypes.string.isRequired
 }
+
+MainSection.propTypes = {
+    token: PropTypes.string.isRequired
+}
+
 
 export default MainSection

@@ -14,7 +14,9 @@ const App = () =>  {
             setToken(json.access_token)
         }
         getToken()
+        
     }, [])
+    console.log(token)
     return (
         <div>
             {(token === '') ? <Login/> : <WebPlayback token={token}/>}

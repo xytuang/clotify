@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import LeftSection from './containers/LeftSection'
 import RightSection from './containers/RightSection'
@@ -38,12 +39,13 @@ const WebPlayback = (props) => {
         <>
             <div className="app">
                 <LeftSection/>
-                <MainSection/>
+                <MainSection token={props.token}/>
                 <RightSection/>
             </div>
         </>
     )
 }
+
 
 
 export default WebPlayback
