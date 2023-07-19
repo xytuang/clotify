@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types'
 import Discover from '../components/Discover/Discover'
 import RecentlyPlayed from '../components/RecentlyPlayed/RecentlyPlayed'
+import { useSelector } from 'react-redux'
 
 
 const Home = ({show}) => {
@@ -35,12 +36,12 @@ const Search = ({show}) => {
 
 
 const MainSection = () => {
-    // const [page, setPage] = useState('home')
+    const uiView = useSelector(state => state.uiView)
 
     return (
         <div>
-            <Home show={'home'}/>
-            <Search show={''}/>
+            <Home show={uiView.view}/>
+            <Search show={uiView.view}/>
         </div>
     )
 
