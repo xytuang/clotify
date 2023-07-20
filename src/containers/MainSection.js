@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types'
 import Discover from '../components/Discover/Discover'
 import MostPlayed from '../components/RecentlyPlayed/MostPlayed'
+import Search from '../components/Search'
 import { useSelector } from 'react-redux'
 
 
@@ -24,17 +25,7 @@ const Home = ({show, token}) => {
     )
 }
 
-const Search = ({show}) => {
-    if (show !== 'search'){
-        return (
-            <div>
-            </div>
-        )
-    }
-    return (
-        <input placeholder='What do you want to listen to?'/>
-    )
-}
+
 
 
 const MainSection = ({token}) => {
@@ -43,7 +34,7 @@ const MainSection = ({token}) => {
     return (
         <div>
             <Home show={uiView.view} token={token}/>
-            <Search show={uiView.view}/>
+            <Search show={uiView.view} token={token}/>
         </div>
     )
 
@@ -54,9 +45,7 @@ Home.propTypes = {
     token: PropTypes.string.isRequired
 }
 
-Search.propTypes = {
-    show: PropTypes.string.isRequired
-}
+
 
 MainSection.propTypes = {
     token: PropTypes.string.isRequired

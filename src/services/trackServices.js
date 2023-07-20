@@ -24,4 +24,13 @@ const playTrack = async (token, uri) => {
 
 }
 
-export default { getUsersTopTracks, playTrack }
+const findTrack = async (token, query) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+
+    const response = await axios.get(`${baseUrl}/search?q=${query}&type=track&limit=10`, config)
+    return response.data
+}
+
+export default { getUsersTopTracks, playTrack, findTrack }

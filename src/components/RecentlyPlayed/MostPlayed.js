@@ -9,7 +9,6 @@ const MostPlayed = ({token}) => {
     useEffect(() => {
         trackServices.getUsersTopTracks(token).then(songs => setMostPlayed(songs.items))
     }, [])
-    console.log(mostPlayed.map(song=> song.uri))
 
     const handlePlay = (uri) => {
         trackServices.playTrack(token, uri)
