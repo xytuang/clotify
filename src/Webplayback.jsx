@@ -1,12 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
-import LeftSection from './containers/LeftSection'
-import RightSection from './containers/RightSection'
-import MainSection from './containers/MainSection'
+
+const track = {
+    name: '',
+    album: {
+        images: [
+            { url: '' }
+        ]
+    },
+    artists: [
+        { name: '' }
+    ]
+}
+
 
 const WebPlayback = (props) => {
-    // const [is_paused, setPaused] = useState(false)
-    // const [is_active, setActive] = useState(false)
+    const [is_paused, setPaused] = useState(false)
+    const [current_track, setTrack] = useState(track)
     // eslint-disable-next-line no-unused-vars
     const [player, setPlayer] = useState(undefined)
 
@@ -31,6 +41,16 @@ const WebPlayback = (props) => {
             player.addListener('not_ready', ({ device_id }) => {
                 console.log('Device ID has gone offline', device_id)
             })
+
+            player.addListener('player_state_changed', ( state => {
+
+                if (!state) {
+                    return
+                }
+                setTrack(state.track_window.current_track)
+                setPaused(state.paused)
+            }))
+            
     
             player.connect()
         }
@@ -38,9 +58,19 @@ const WebPlayback = (props) => {
     return (
         <>
             <div className="app">
-                <LeftSection/>
-                <MainSection token={props.token}/>
-                <RightSection/>
+                
+                <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
+
+                <div className="now-playing__side">
+                    <>{props.children}</>
+                    <div className="now-playing__name">{ current_track.name }</div>
+                    <div className="now-playing__artist">{ current_track.artists[0].name }</div>
+                    <button className="btn-spotify" onClick={() => { player.previousTrack() }} >&lt;&lt;</button>
+                    <button className="btn-spotify" onClick={() => { player.togglePlay() }} > { is_paused ? 'PLAY' : 'PAUSE' } </button>
+                    <button className="btn-spotify" onClick={() => { player.nextTrack() }} >&gt;&gt;</button>
+
+                </div>
+                
             </div>
         </>
     )

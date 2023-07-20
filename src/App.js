@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import './index.css'
 import WebPlayback from './Webplayback'
+import LeftSection from './containers/LeftSection'
+import MainSection from './containers/MainSection'
+import RightSection from './containers/RightSection'
 
 const App = () =>  {
     const [token, setToken] = useState('')
@@ -17,11 +20,21 @@ const App = () =>  {
         
     }, [])
     console.log(token)
-    return (
-        <div>
-            {(token === '') ? <Login/> : <WebPlayback token={token}/>}
-        </div>
-    )
+    if (token === ''){
+        return (
+            <Login/>
+        )
+    }
+    else {
+        return (
+            <WebPlayback token={token}>
+                <LeftSection/>
+                <MainSection token={token}/>
+                <RightSection/>
+            </WebPlayback>
+        )
+    }
+    
 }
 
 export default App

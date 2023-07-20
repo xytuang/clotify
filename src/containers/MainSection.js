@@ -1,7 +1,7 @@
 
 import PropTypes from 'prop-types'
 import Discover from '../components/Discover/Discover'
-import RecentlyPlayed from '../components/RecentlyPlayed/RecentlyPlayed'
+import MostPlayed from '../components/RecentlyPlayed/MostPlayed'
 import { useSelector } from 'react-redux'
 
 
@@ -18,7 +18,7 @@ const Home = ({show, token}) => {
     }
     return (
         <div className='mainSection'>
-            <RecentlyPlayed token={token}/>
+            <MostPlayed token={token}/>
             <Discover madeFor={madeFor}/>
         </div>
     )
