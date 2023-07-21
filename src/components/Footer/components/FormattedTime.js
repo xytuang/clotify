@@ -15,9 +15,9 @@ const FormattedTime = ({numSeconds}) => {
     }
 
     return (
-        <div>
+        <span>
             {getFormattedTime()}
-        </div>
+        </span>
     )
     
 }

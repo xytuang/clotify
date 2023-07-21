@@ -9,7 +9,7 @@ const Search = ({show, token}) => {
         if (search !== ''){
             trackServices.findTrack(token, search).then(songs => setDisplay(songs.tracks.items))
         }
-        console.log(display)
+        // console.log(display)
     }, [search])
     const handleSearch = (event) => {
         setSearch(event.target.value)

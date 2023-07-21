@@ -15,13 +15,19 @@ const Footer = ({current_track, player, is_paused, token}) => {
 
     return (
         <div className='footer'>
-            <SongSlider token={token}/>
+            
             <SongDetails current_track={current_track}/>
 
             <div className='footer-center'>
-                <AiFillStepBackward  onClick={() => { player.previousTrack() }}/>
-                {is_paused ? <FaCirclePlay onClick={() => { player.togglePlay() }}/> : <AiOutlinePauseCircle onClick={() => { player.togglePlay() }}/>}
-                <AiFillStepForward onClick={() => { player.nextTrack() }}/>
+                <div>
+                    <AiFillStepBackward  onClick={() => { player.previousTrack() }}/>
+                    {is_paused ? <FaCirclePlay onClick={() => { player.togglePlay() }}/> : <AiOutlinePauseCircle onClick={() => { player.togglePlay() }}/>}
+                    <AiFillStepForward onClick={() => { player.nextTrack() }}/>
+                </div>
+                <div>
+                    <SongSlider token={token}/>
+                </div>
+                
             </div>
 
             <div className='footer-right'>

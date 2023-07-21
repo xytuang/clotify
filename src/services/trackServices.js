@@ -46,8 +46,12 @@ const getCurrentlyPlayingTrack = async (token) => {
         headers : { Authorization: `Bearer ${token}`}
     }
     const response = await axios.get(`${baseUrl}/me/player/currently-playing`, config)
-    // console.log(response.data)
+    
     return response.data
 }
 
-export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack }
+const seekToPosition = (token, position_ms) => {
+    axios({ url: `${baseUrl}/me/player/seek?position_ms=${position_ms}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
+}
+
+export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack, seekToPosition }

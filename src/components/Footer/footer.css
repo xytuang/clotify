@@ -1,7 +1,9 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
 
+    background-color: black;
+    color: white;
     position: absolute;
     left: 0;
     right: 0;
@@ -15,4 +17,19 @@ img {
 
 .footer-left{
     display: flex;
+}
+
+.footer-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    accent-color: white;
+}
+
+.progress-bar {
+    width: 400px;
+    
 }

@@ -6,7 +6,7 @@ import FormattedTime from './components/FormattedTime'
 
 const SongSlider = ({token}) => {
     
-    const [pulledData, setPulledData] = useState({})
+    const [pulledData, setPulledData] = useState(null)
 
 
     useEffect(() => {
@@ -14,19 +14,32 @@ const SongSlider = ({token}) => {
             trackServices.getCurrentlyPlayingTrack(token).then(data => {setPulledData(data)})
         }, 1000)
     }, [pulledData])
-    if (pulledData === {}){
+
+    useEffect(() => {
+
+    }, )
+
+    const handleChange = (event) => {
+        if (pulledData === null){
+            return
+        }
+        const newPosition = Math.floor((event.target.value / 100) * pulledData.item.duration_ms)
+
+        trackServices.seekToPosition(token, newPosition)
+    }
+    while (pulledData === null){
         return (
             <div></div>
         )
-    }else{
-        return (
-            <div>
-                <FormattedTime numSeconds={pulledData.progress_ms/1000}/>
-                <FormattedTime numSeconds={pulledData.item.duration_ms/1000}/>
-            </div>
-            
-        )
     }
+    return (
+        <div>
+            <FormattedTime numSeconds={pulledData.progress_ms/1000}/>
+            <input className='progress-bar' type='range' value={pulledData.progress_ms/pulledData.item.duration_ms * 100} onChange={handleChange} />
+            <FormattedTime numSeconds={pulledData.item.duration_ms/1000}/>
+        </div>
+            
+    )
 }
 
 SongSlider.propTypes = {
