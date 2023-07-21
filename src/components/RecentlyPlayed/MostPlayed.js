@@ -15,7 +15,7 @@ const MostPlayed = ({token}) => {
     }
     return (
         <div>
-            <div>Good Evening</div>
+            <div>Your favourites</div>
             <div className='recentlyPlayed'>
                 {mostPlayed.map(song => 
                     <div key={song.name} onClick={() => handlePlay(song.uri)}>

@@ -33,4 +33,21 @@ const findTrack = async (token, query) => {
     return response.data
 }
 
-export default { getUsersTopTracks, playTrack, findTrack }
+const adjustVolume = async (token, volume) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.put(`${baseUrl}/me/player/volume?volume_percent=${volume}`, config)
+    return response.data
+}
+
+const getCurrentlyPlayingTrack = async (token) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/player/currently-playing`, config)
+    // console.log(response.data)
+    return response.data
+}
+
+export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack }

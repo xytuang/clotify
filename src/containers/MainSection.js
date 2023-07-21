@@ -5,8 +5,6 @@ import MostPlayed from '../components/RecentlyPlayed/MostPlayed'
 import Search from '../components/Search'
 import { useSelector } from 'react-redux'
 
-
-
 const Home = ({show, token}) => {
    
     
