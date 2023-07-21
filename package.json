@@ -43,6 +43,16 @@
       "last 1 safari version"
     ]
   },
+  "babel": {
+    "presets": [
+      [
+        "react-app",
+        {
+          "runtime": "automatic"
+        }
+      ]
+    ]
+  },
   "devDependencies": {
     "dotenv": "^16.3.1",
     "eslint": "^8.45.0",

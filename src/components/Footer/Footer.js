@@ -1,3 +1,4 @@
+
 import PropTypes from 'prop-types'
 import { AiOutlinePauseCircle, AiFillStepForward, AiFillStepBackward } from 'react-icons/ai'
 import { FaCirclePlay } from 'react-icons/fa6'
@@ -6,6 +7,7 @@ import { FaCirclePlay } from 'react-icons/fa6'
 import './footer.css'
 import { useState } from 'react'
 import SongSlider from './SongSlider'
+import SongDetails from './SongDetails'
 
 
 const Footer = ({current_track, player, is_paused, token}) => {
@@ -14,14 +16,8 @@ const Footer = ({current_track, player, is_paused, token}) => {
     return (
         <div className='footer'>
             <SongSlider token={token}/>
-            <div className='footer-left'>
-                <img src={current_track.album.images[0].url} className="now-playing__cover" alt="" />
-                <div>
-                    <div className="now-playing__name">{ current_track.name }</div>
-                    <div className="now-playing__artist">{ current_track.artists[0].name }</div>
-                </div>
-                
-            </div>
+            <SongDetails current_track={current_track}/>
+
             <div className='footer-center'>
                 <AiFillStepBackward  onClick={() => { player.previousTrack() }}/>
                 {is_paused ? <FaCirclePlay onClick={() => { player.togglePlay() }}/> : <AiOutlinePauseCircle onClick={() => { player.togglePlay() }}/>}
