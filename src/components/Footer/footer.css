@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
 
-    background-color: black;
+    background-color: #191414;
     color: white;
     position: absolute;
     left: 0;
@@ -27,9 +27,13 @@ img {
 
 input {
     accent-color: white;
+    cursor: none
 }
 
 .progress-bar {
-    width: 400px;
-    
+    width: 400px; 
+}
+
+.progress-bar:hover {
+    accent-color: #1DB954
 }

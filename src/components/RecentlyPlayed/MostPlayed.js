@@ -16,11 +16,11 @@ const MostPlayed = ({token}) => {
     return (
         <div>
             <div>Your favourites</div>
-            <div className='recentlyPlayed'>
+            <div className='mostplayed'>
                 {mostPlayed.map(song => 
-                    <div key={song.name} onClick={() => handlePlay(song.uri)}>
-                        <img src={song.album.images[2].url}/>
-                        {song.name}
+                    <div className='song' key={song.name} onClick={() => handlePlay(song.uri)}>
+                        <img className='mostplayed-img' src={song.album.images[2].url}/>
+                        <span className='song-name'>{song.name}</span>
                     </div>)}
             </div>
         </div>

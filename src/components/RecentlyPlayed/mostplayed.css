@@ -1,4 +1,15 @@
-.recentlyPlayed {
+.mostplayed {
     display: grid;
     grid: repeat(2,1fr)/repeat(3,1fr);
+    gap: 20px;
+}
+
+.song {
+    display: flex;
+    align-items: center;
+}
+
+.mostplayed-img {
+    height: 100%;
+    width: auto;
 }

@@ -1,6 +1,12 @@
 .app {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
-    background-color: black;
+    grid-template-rows: 1fr min-content;
+    background-color: #191414;
     color: white;
+    
+}
+
+.song {
+    background-color: grey;
 }
