@@ -1,23 +1,17 @@
 import { TiHome } from 'react-icons/ti'
 import {FaMagnifyingGlass} from 'react-icons/fa6'
 import { BiLibrary } from 'react-icons/bi'
-
-import { setView } from '../reducers/uiReducer'
-import { useDispatch } from 'react-redux'
+import { Link, Outlet } from 'react-router-dom'
 
 const LeftSection = () => {
-    const dispatch = useDispatch()
-    const handleClick = (view) => {
-        dispatch(setView(view))
-    }
-
     
     return (
         <div>
             <div>
-                <div onClick={() => handleClick('home')}><TiHome/>Home</div>
-                <div onClick={() => handleClick('search')}><FaMagnifyingGlass/>Search</div>
+                <Link to='/'><div><TiHome/>Home</div></Link>
+                <Link to='/search'><div><FaMagnifyingGlass/>Search</div></Link>
             </div>
+            <Outlet/>
             <div>
                 <div><BiLibrary/>Your library</div>
                 <div>

@@ -1,49 +1,24 @@
 
 import PropTypes from 'prop-types'
-import Discover from '../components/Discover/Discover'
 import MostPlayed from '../components/RecentlyPlayed/MostPlayed'
 import Search from '../components/Search'
-import { useSelector } from 'react-redux'
+import { Routes, Route } from 'react-router-dom'
+import IndividualAlbum from '../components/IndividualAlbum/IndividualAlbum'
 
-const Home = ({show, token}) => {
-   
-    
-    const madeFor = ['daily mix 1', 'daily mix 2', 'daily mix 3', 'daily mix 4', 'daily mix 5']
-    if (show !== 'home'){
-        return (
-            <div>
-            </div>
-        )
-    }
-    return (
-        <div className='mainSection'>
-            <MostPlayed token={token}/>
-            <Discover madeFor={madeFor}/>
-        </div>
-    )
-}
-
-
-
+//<Route path='/:id' element={<IndividualAlbum token={token}/>}/>
 
 const MainSection = ({token}) => {
-    const uiView = useSelector(state => state.uiView)
 
     return (
         <div>
-            <Home show={uiView.view} token={token}/>
-            <Search show={uiView.view} token={token}/>
+            <Routes>
+                <Route path='/' element={<MostPlayed token={token}/>}/>
+                <Route path='/:id' element ={<IndividualAlbum token={token}/>}/>
+                <Route path='/search' element={<Search token={token}/>}/>
+            </Routes>
         </div>
     )
-
 }
-
-Home.propTypes = {
-    show: PropTypes.string.isRequired,
-    token: PropTypes.string.isRequired
-}
-
-
 
 MainSection.propTypes = {
     token: PropTypes.string.isRequired

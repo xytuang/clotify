@@ -6,6 +6,8 @@ import LeftSection from './containers/LeftSection'
 import MainSection from './containers/MainSection'
 import RightSection from './containers/RightSection'
 
+import { BrowserRouter as Router } from 'react-router-dom'
+
 const App = () =>  {
     const [token, setToken] = useState('')
 
@@ -27,11 +29,14 @@ const App = () =>  {
     }
     else {
         return (
-            <WebPlayback token={token}>
-                <LeftSection/>
-                <MainSection token={token}/>
-                <RightSection/>
-            </WebPlayback>
+            <Router>
+                <WebPlayback token={token}>
+                    <LeftSection/>
+                    <MainSection token={token}/>
+                    <RightSection/>
+                </WebPlayback>
+            </Router>
+            
         )
     }
     

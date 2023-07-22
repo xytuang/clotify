@@ -54,4 +54,13 @@ const seekToPosition = (token, position_ms) => {
     axios({ url: `${baseUrl}/me/player/seek?position_ms=${position_ms}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
 }
 
-export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack, seekToPosition }
+const getAlbum = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/albums/${id}`, config)
+    return response.data
+}
+
+
+export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack, seekToPosition, getAlbum }

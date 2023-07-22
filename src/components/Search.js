@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import trackServices from '../services/trackServices'
 
-const Search = ({show, token}) => {
+const Search = ({ token}) => {
     const [search, setSearch] = useState('')
     const [display, setDisplay] = useState([])
     useEffect(() => {
@@ -19,12 +19,6 @@ const Search = ({show, token}) => {
         trackServices.playTrack(token, uri)
     }
 
-    if (show !== 'search'){
-        return (
-            <div>
-            </div>
-        )
-    }
     return (
         <div>
             <input value={search} onChange={handleSearch} placeholder='What do you want to listen to?'/>
@@ -41,7 +35,6 @@ const Search = ({show, token}) => {
 
 
 Search.propTypes = {
-    show: PropTypes.string.isRequired,
     token: PropTypes.string.isRequired
 }
 
