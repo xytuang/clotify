@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react'
 import Login from './components/Login'
 import './index.css'
 import WebPlayback from './Webplayback'
-import LeftSection from './containers/LeftSection'
-import MainSection from './containers/MainSection'
-import RightSection from './containers/RightSection'
+
 
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -30,11 +28,7 @@ const App = () =>  {
     else {
         return (
             <Router>
-                <WebPlayback token={token}>
-                    <LeftSection/>
-                    <MainSection token={token}/>
-                    <RightSection/>
-                </WebPlayback>
+                <WebPlayback token={token}/>
             </Router>
             
         )

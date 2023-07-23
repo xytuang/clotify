@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer/Footer'
-
+import LeftSection from './containers/LeftSection'
+import MainSection from './containers/MainSection'
+import RightSection from './containers/RightSection'
 const track = {
     name: '',
     album: {
@@ -56,7 +58,6 @@ const WebPlayback = (props) => {
                 })
             }))
             
-    
             player.connect()
         }
     }, [])
@@ -74,7 +75,11 @@ const WebPlayback = (props) => {
         return (
             <>
                 <div>
-                    <div className='app'>{props.children}</div>
+                    <div className='app'>
+                        <LeftSection/>
+                        <MainSection token={props.token} player={player}/>
+                        <RightSection/>
+                    </div>
                     <Footer player={player} current_track={current_track} is_paused={is_paused} token={props.token}/>
                 </div>
             </>

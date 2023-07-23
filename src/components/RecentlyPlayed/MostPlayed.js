@@ -13,9 +13,7 @@ const MostPlayed = ({ token}) => {
         trackServices.getUsersTopTracks(token).then(songs => setMostPlayed(songs.items))
     }, [])
 
-    // const handlePlay = (uri) => {
-    //     trackServices.playTrack(token, uri)
-    // }
+
 
     return (
             
@@ -39,5 +37,5 @@ const MostPlayed = ({ token}) => {
 MostPlayed.propTypes = {
     token: PropTypes.string.isRequired,
 }
-//onClick={() => handlePlay(song.uri)
+
 export default MostPlayed

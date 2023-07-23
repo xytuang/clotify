@@ -16,10 +16,8 @@ const playTrack = async (token, uri) => {
     const config = {
         headers : { Authorization: `Bearer ${token}`}
     }
-    const configURI = {
-        uris: [uri]
-    }
-    const response = await axios.put(`${baseUrl}/me/player/play`, configURI, config)
+
+    const response = await axios.put(`${baseUrl}/me/player/play`, {uris: uri}, config)
     return response.data
 
 }

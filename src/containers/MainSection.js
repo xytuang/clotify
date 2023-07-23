@@ -7,13 +7,13 @@ import IndividualAlbum from '../components/IndividualAlbum/IndividualAlbum'
 
 //<Route path='/:id' element={<IndividualAlbum token={token}/>}/>
 
-const MainSection = ({token}) => {
+const MainSection = ({player, token}) => {
 
     return (
         <div>
             <Routes>
                 <Route path='/' element={<MostPlayed token={token}/>}/>
-                <Route path='/:id' element ={<IndividualAlbum token={token}/>}/>
+                <Route path='/:id' element ={<IndividualAlbum player={player} token={token}/>}/>
                 <Route path='/search' element={<Search token={token}/>}/>
             </Routes>
         </div>
@@ -21,6 +21,7 @@ const MainSection = ({token}) => {
 }
 
 MainSection.propTypes = {
+    player: PropTypes.object.isRequired,
     token: PropTypes.string.isRequired
 }
 
