@@ -16,7 +16,7 @@ const Footer = ({current_track, player, is_paused, token}) => {
     return (
         <div className='footer'>
             
-            <SongDetails current_track={current_track}/>
+            <SongDetails current_track={current_track} token={token}/>
 
             <div className='footer-center'>
                 <div>
@@ -27,7 +27,6 @@ const Footer = ({current_track, player, is_paused, token}) => {
                 <div>
                     <SongSlider token={token}/>
                 </div>
-                
             </div>
 
             <div className='footer-right'>

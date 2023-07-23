@@ -19,14 +19,14 @@ const SongSlider = ({token}) => {
 
     }, )
 
-    const handleChange = (event) => {
-        if (pulledData === null){
-            return
-        }
-        const newPosition = Math.floor((event.target.value / 100) * pulledData.item.duration_ms)
+    // const handleChange = (event) => {
+    //     if (pulledData === null){
+    //         return
+    //     }
+    //     const newPosition = Math.floor((event.target.value / 100) * pulledData.item.duration_ms)
 
-        trackServices.seekToPosition(token, newPosition)
-    }
+    //     trackServices.seekToPosition(token, newPosition)
+    // }
     while (pulledData === null){
         return (
             <div></div>
@@ -35,7 +35,8 @@ const SongSlider = ({token}) => {
     return (
         <div>
             <FormattedTime numSeconds={pulledData.progress_ms/1000}/>
-            <input className='progress-bar' type='range' value={pulledData.progress_ms/pulledData.item.duration_ms * 100} onChange={handleChange} />
+            <span>-------------------------------------</span>
+            {/* <input className='progress-bar' type='range' value={pulledData.progress_ms/pulledData.item.duration_ms * 100} onChange={handleChange} /> */}
             <FormattedTime numSeconds={pulledData.item.duration_ms/1000}/>
         </div>
             

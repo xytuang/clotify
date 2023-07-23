@@ -3,11 +3,13 @@ import { useState, useEffect } from'react'
 import { useParams } from 'react-router-dom'
 import trackServices from '../../services/trackServices'
 import { FaCirclePlay } from 'react-icons/fa6'
-import { AiOutlineHeart, AiOutlinePauseCircle } from 'react-icons/ai'
+import { AiOutlinePauseCircle } from 'react-icons/ai'
 import { HiOutlineArrowDownCircle } from 'react-icons/hi2'
+import { IoTimeOutline } from 'react-icons/io5'
 
 import './IndividualAlbum.css'
 import FormattedTime from '../Footer/components/FormattedTime'
+import LikeButton from '../Buttons/LikeButton/LikeButton'
 
 
 const IndividualAlbum = ({player, token}) => {
@@ -36,6 +38,7 @@ const IndividualAlbum = ({player, token}) => {
         }
     }
 
+
     if (album === null){
         return (
             <></>
@@ -52,11 +55,11 @@ const IndividualAlbum = ({player, token}) => {
                     <div>{album.artists.map(artist => <span key={artist.id}>{artist.name} . </span>)} {album.release_date} . {album.total_tracks} song</div>
                 </div>
             </div>
-            <div>{!is_paused ? <FaCirclePlay onClick={handlePlay}/> : <AiOutlinePauseCircle onClick={handlePlay}/>} <AiOutlineHeart/> <HiOutlineArrowDownCircle/></div>
-            <div className='individualAlbumTracks'>
+            <div>{!is_paused ? <FaCirclePlay onClick={handlePlay}/> : <AiOutlinePauseCircle onClick={handlePlay}/>} <LikeButton token={token} uri={album.uri}/> <HiOutlineArrowDownCircle/></div>
+            <div className='IndividualAlbumTracks'>
                 <div>
-                    <div className='individualAlbumTrackHeaders'><span>#</span> <span>Title</span> <span>time icon</span></div>
-                    {album.tracks.items.map(item => <div key={item.id} className='individualAlbumTrackHeaders'><span>{item.track_number}</span> <span>{item.name}</span> <FormattedTime numSeconds={item.duration_ms/1000}/></div>)}
+                    <div className='individualAlbumTrackHeaders'><span>#</span> <span>Title</span> <span><IoTimeOutline/></span></div>
+                    {album.tracks.items.map(item => <div key={item.id} className='individualAlbumTrackHeaders'><span>{item.track_number}</span> <span>{item.name}</span> <span><LikeButton token={token} uri={item.uri}/><FormattedTime numSeconds={item.duration_ms/1000}/></span></div>)}
                 </div>
                 
             </div>

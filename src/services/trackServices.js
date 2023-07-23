@@ -60,5 +60,33 @@ const getAlbum = async (token, id) => {
     return response.data
 }
 
+const getSavedTracks = async (token) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/tracks`, config)
+    return response.data
+}
 
-export default { getUsersTopTracks, playTrack, findTrack, adjustVolume, getCurrentlyPlayingTrack, seekToPosition, getAlbum }
+const getSavedAlbums = async (token) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/albums?limit=50`, config)
+    return response.data
+}
+
+
+
+export default 
+{ 
+    getUsersTopTracks, 
+    playTrack, 
+    findTrack, 
+    adjustVolume, 
+    getCurrentlyPlayingTrack, 
+    seekToPosition, 
+    getAlbum, 
+    getSavedTracks, 
+    getSavedAlbums 
+}
