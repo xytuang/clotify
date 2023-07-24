@@ -92,6 +92,32 @@ const deleteTrack = (token, id) => {
     axios({ url: `${baseUrl}/me/tracks/?ids=${id}`, method: 'delete', headers: { Authorization: `Bearer ${token}`} })
 }
 
+const checkSavedTracks = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/tracks/contains?ids=${id}`, config)
+    return response.data
+}
+
+const checkSavedAlbums = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/albums/contains?ids=${id}`, config)
+    return response.data
+}
+
+const getPlaylistItems = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/playlists/${id}/tracks`, config)
+    return response.data
+}
+
+
+
 
 
 
@@ -109,5 +135,8 @@ export default
     saveAlbum,
     saveTrack,
     deleteAlbum,
-    deleteTrack
+    deleteTrack,
+    checkSavedTracks,
+    checkSavedAlbums,
+    getPlaylistItems
 }

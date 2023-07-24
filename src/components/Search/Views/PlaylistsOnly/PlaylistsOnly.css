@@ -2,3 +2,40 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.individualPlaylist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    overflow: hidden;
+
+    width: 100px;
+    height: 120px;
+    border-radius: 3%;
+    background-color: rgb(28, 28, 28);
+    margin: 5px;
+
+    position: relative;
+}
+
+.individualPlaylist:hover {
+     background-color: rgb(50, 50, 50);
+}
+
+
+.playButton {
+    display: none;
+}
+
+.individualPlaylist:hover .playButton{
+    background-color: rgb(50, 50, 50);
+    z-index: 2;
+    position: absolute;
+    display: inline;
+    right: 20px;
+    bottom: 60px;
+    color: #1DB954;
+    
+    
+}

@@ -8,8 +8,8 @@ const LikeButton = ({token, uri}) => {
     const [inSavedTracks, setPresentTracks] = useState(false)
 
     useEffect(() => {        
-        trackServices.getSavedAlbums(token).then(res => {setPresentAlbums(res.items.filter(element => element.album.uri === uri).length != 0)})
-        trackServices.getSavedTracks(token).then(res => setPresentTracks(res.items.filter(element => element.track.uri === uri).length != 0))
+        trackServices.checkSavedAlbums(token, uri.substring(14)).then(res => setPresentAlbums(res[0]))
+        trackServices.checkSavedTracks(token, uri.substring(14)).then(res => setPresentTracks(res[0]))
     }, [])
 
     const handleLike = () => {

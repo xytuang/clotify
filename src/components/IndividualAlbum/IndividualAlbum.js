@@ -34,7 +34,6 @@ const IndividualAlbum = ({player, token}) => {
         else{
             player.togglePlay()
             setPaused(!is_paused)
-            // player.getCurrentState().then(state => setPaused(state.paused))
         }
     }
 

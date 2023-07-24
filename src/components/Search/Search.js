@@ -48,12 +48,11 @@ const Search = ({ token, player }) => {
                         <Link to='songs'><button>Songs</button></Link>
                         <Link to='playlists'><button>Playlists</button></Link>
                     </div>
-                    
 
                     <Routes>
                         <Route index element={<All songs={songs.slice(0,5)} artists={artists.slice(0,7)} albums={albums.slice(0,7)} podcasts={podcasts.slice(0,7)} episodes={episodes.slice(0,7)} playlists={playlists.slice(0,7)} handlePlay={handlePlay}/>}/>
                         <Route path='songs' element={<SongsOnly songs={songs} token={token} player={player}/>}/>
-                        <Route path='playlists' element={<PlaylistsOnly playlists={playlists}/>}/>
+                        <Route path='playlists' element={<PlaylistsOnly playlists={playlists} token={token} player={player}/>}/>
                     </Routes>
                     
                     
