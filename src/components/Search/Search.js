@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import trackServices from '../../services/trackServices'
-import SongDisplay from './SongDisplay'
-import ArtistDisplay from './ArtistDisplay'
-import AlbumDisplay from './AlbumDisplay'
 import './Search.css'
-import PlaylistDisplay from './PlaylistDisplay'
-import EpisodeDisplay from './EpisodeDisplay'
-import PodcastDisplay from './PodcastDisplay'
+import { Route, Routes, Link } from 'react-router-dom'
+import SongsOnly from './Views/SongsOnly/SongsOnly'
+import PlaylistsOnly from './Views/PlaylistsOnly/PlaylistsOnly'
+import All from './Views/All/All'
 
-const Search = ({ token}) => {
+const Search = ({ token, player }) => {
     const [search, setSearch] = useState('')
     const [songs, setSongs] = useState([])
     const [albums, setAlbums] = useState([])
@@ -45,12 +43,20 @@ const Search = ({ token}) => {
             <input value={search} onChange={handleSearch} placeholder='What do you want to listen to?'/>
             {search === '' ? <div></div> : 
                 <>
-                    <SongDisplay songs={songs} handlePlay={handlePlay}/>
-                    <ArtistDisplay artists={artists}/>
-                    <AlbumDisplay albums={albums}/>
-                    <PlaylistDisplay playlists={playlists}/>
-                    <EpisodeDisplay episodes={episodes}/>
-                    <PodcastDisplay podcasts={podcasts}/>
+                    <div>
+                        <Link to=''><button>All</button></Link>
+                        <Link to='songs'><button>Songs</button></Link>
+                        <Link to='playlists'><button>Playlists</button></Link>
+                    </div>
+                    
+
+                    <Routes>
+                        <Route index element={<All songs={songs.slice(0,5)} artists={artists.slice(0,7)} albums={albums.slice(0,7)} podcasts={podcasts.slice(0,7)} episodes={episodes.slice(0,7)} playlists={playlists.slice(0,7)} handlePlay={handlePlay}/>}/>
+                        <Route path='songs' element={<SongsOnly songs={songs} token={token} player={player}/>}/>
+                        <Route path='playlists' element={<PlaylistsOnly playlists={playlists}/>}/>
+                    </Routes>
+                    
+                    
                 </>
             }
             
@@ -60,7 +66,14 @@ const Search = ({ token}) => {
 
 
 Search.propTypes = {
-    token: PropTypes.string.isRequired
+    token: PropTypes.string.isRequired,
+    player: PropTypes.object.isRequired
 }
 
 export default Search
+
+//<Link to='artists'><div>Artists</div></Link>
+//<Link to='albums'><div>Albums</div></Link>
+//<Link to='podcasts'><div>Podcasts</div></Link>
+//<Link to='episodes'><div>Episodes</div></Link>
+//songs={songs} token={token} player={player}

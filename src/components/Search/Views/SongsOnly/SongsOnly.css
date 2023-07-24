@@ -1,0 +1,34 @@
+.songOnlyHeaders {
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr 1fr;
+    padding: 10px;
+    font-size: small;
+}
+
+.songOnlyTracks {
+    display: grid;
+    grid-template-columns: 1fr 5fr 2fr 1fr;
+    padding: 10px;
+    font-size: small;
+}
+
+.songOnlyTitle {
+    display: flex;
+    align-items: center;
+}
+
+.onHover {
+    display: none;
+}
+
+.songOnlyTracks:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.songOnlyTracks:hover .default {
+    display: none;
+}
+
+.songOnlyTracks:hover .onHover {
+    display: inline-block;
+}

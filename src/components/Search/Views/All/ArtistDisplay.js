@@ -8,7 +8,7 @@ const ArtistDisplay = ({artists}) => {
             <div className='containerSearchResult'>
                 {artists.map(artist => 
                     <div key={artist.id} className='individualItem'>
-                        <img src={artist.images[2].url}/>
+                        <img src={artist.images[0].url} alt='test'/>
                         <div>{artist.name}</div>
                     </div>
                 )}

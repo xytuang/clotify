@@ -13,7 +13,7 @@ const MainSection = ({player, token}) => {
             <Routes>
                 <Route path='/' element={<MostPlayed token={token}/>}/>
                 <Route path='/:id' element ={<IndividualAlbum player={player} token={token}/>}/>
-                <Route path='/search' element={<Search token={token}/>}/>
+                <Route path='/search/*' element={<Search token={token} player={player}/>}/>
             </Routes>
         </div>
     )

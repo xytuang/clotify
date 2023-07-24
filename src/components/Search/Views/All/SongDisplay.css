@@ -1,0 +1,17 @@
+.songsSearchResult {
+    display: flex;
+    padding: 5px;
+}
+
+.oneSongSearchResult {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    background-color: rgb(28, 28, 28);
+    border-radius: 3%;
+}
+
+.oneSongSearchResult:hover {
+    background-color: rgb(50, 50, 50);
+}

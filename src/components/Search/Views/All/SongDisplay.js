@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import './SongDisplay.css'
-import FormattedTime from '../Footer/components/FormattedTime'
+import FormattedTime from '../../../Footer/components/FormattedTime'
 
 const SongDisplay = ({songs, handlePlay}) => {
     return (
