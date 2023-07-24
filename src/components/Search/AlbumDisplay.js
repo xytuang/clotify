@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
-import './AlbumDisplay.css'
+import './basicDisplay.css'
 
 const AlbumDisplay = ({albums}) => {
     return (
         <div>
             <h4>Albums</h4>
-            <div className='albumSearchResult'>
+            <div className='containerSearchResult'>
                 {albums.map(album => 
-                    <div key={album.id}>
+                    <div key={album.id} className='individualItem'>
                         <img src={album.images[2].url}/>
                         <div>{album.name}</div>
                     </div>

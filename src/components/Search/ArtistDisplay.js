@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
-import './ArtistDisplay.css'
+import './basicDisplay.css'
 
 const ArtistDisplay = ({artists}) => {
     return (
         <div>
             <h4>Artists</h4>
-            <div className='artistsSearchResult'>
+            <div className='containerSearchResult'>
                 {artists.map(artist => 
-                    <div key={artist.id}>
+                    <div key={artist.id} className='individualItem'>
                         <img src={artist.images[2].url}/>
                         <div>{artist.name}</div>
                     </div>

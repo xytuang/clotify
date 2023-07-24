@@ -27,7 +27,7 @@ const find = async (token, query) => {
         headers : { Authorization: `Bearer ${token}`}
     }
 
-    const response = await axios.get(`${baseUrl}/search?q=${query}&type=album%2Ctrack%2Cartist&limit=5`, config)
+    const response = await axios.get(`${baseUrl}/search?q=${query}&type=album%2Cplaylist%2Cartist%2Ctrack%2Cepisode%2Cshow&limit=5`, config)
     return response.data
 }
 

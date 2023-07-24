@@ -6,6 +6,9 @@
     color: white;
     width: 100vw;
     height: 100vh;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
     
 }
 
