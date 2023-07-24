@@ -23,8 +23,7 @@ const IndividualAlbum = ({player, token}) => {
     useEffect(() => {
         trackServices.getAlbum(token, id).then(data => {setAlbum(data); setAlbumTracks(data.tracks.items.map(item => item.uri))})
         player.getCurrentState().then(state => setCurrentTrackURI(state.track_window.current_track.uri))
-        
-    }, [current_track_uri, album])
+    }, [])
 
     const handlePlay = () => {
         const found = album.tracks.items.filter(item => item.uri === current_track_uri)
@@ -34,10 +33,10 @@ const IndividualAlbum = ({player, token}) => {
         }
         else{
             player.togglePlay()
-            player.getCurrentState().then(state => setPaused(state.paused))
+            setPaused(!is_paused)
+            // player.getCurrentState().then(state => setPaused(state.paused))
         }
     }
-
 
     if (album === null){
         return (

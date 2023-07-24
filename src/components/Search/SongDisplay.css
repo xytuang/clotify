@@ -1,0 +1,9 @@
+.songsSearchResult {
+    display: flex;
+}
+
+.oneSongSearchResult {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}

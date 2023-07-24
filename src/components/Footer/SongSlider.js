@@ -15,10 +15,6 @@ const SongSlider = ({token}) => {
         }, 1000)
     }, [pulledData])
 
-    useEffect(() => {
-
-    }, )
-
     // const handleChange = (event) => {
     //     if (pulledData === null){
     //         return

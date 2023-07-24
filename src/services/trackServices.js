@@ -22,12 +22,12 @@ const playTrack = async (token, uri) => {
 
 }
 
-const findTrack = async (token, query) => {
+const find = async (token, query) => {
     const config = {
         headers : { Authorization: `Bearer ${token}`}
     }
 
-    const response = await axios.get(`${baseUrl}/search?q=${query}&type=track&limit=10`, config)
+    const response = await axios.get(`${baseUrl}/search?q=${query}&type=album%2Ctrack%2Cartist&limit=5`, config)
     return response.data
 }
 
@@ -76,17 +76,38 @@ const getSavedAlbums = async (token) => {
     return response.data
 }
 
+const saveAlbum = (token, id) => {
+    axios({ url: `${baseUrl}/me/albums/?ids=${id}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
+}
+
+const saveTrack = (token, id) => {
+    axios({ url: `${baseUrl}/me/tracks/?ids=${id}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
+}
+
+const deleteAlbum = (token, id) => {
+    axios({ url: `${baseUrl}/me/albums/?ids=${id}`, method: 'delete', headers: { Authorization: `Bearer ${token}`} })
+}
+
+const deleteTrack = (token, id) => {
+    axios({ url: `${baseUrl}/me/tracks/?ids=${id}`, method: 'delete', headers: { Authorization: `Bearer ${token}`} })
+}
+
+
 
 
 export default 
 { 
     getUsersTopTracks, 
     playTrack, 
-    findTrack, 
+    find,
     adjustVolume, 
     getCurrentlyPlayingTrack, 
     seekToPosition, 
     getAlbum, 
     getSavedTracks, 
-    getSavedAlbums 
+    getSavedAlbums,
+    saveAlbum,
+    saveTrack,
+    deleteAlbum,
+    deleteTrack
 }

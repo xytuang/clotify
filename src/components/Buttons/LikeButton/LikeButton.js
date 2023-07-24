@@ -12,10 +12,34 @@ const LikeButton = ({token, uri}) => {
         trackServices.getSavedTracks(token).then(res => setPresentTracks(res.items.filter(element => element.track.uri === uri).length != 0))
     }, [])
 
+    const handleLike = () => {
+        const id = uri.substring(14)
+        if (uri.includes('album')){
+            trackServices.saveAlbum(token,id)
+            setPresentAlbums(true)
+        }
+        else if (uri.includes('track')){
+            trackServices.saveTrack(token,id)
+            setPresentTracks(true)
+        }
+    }
+
+    const handleUnlike = () => {
+        const id = uri.substring(14)
+        if (uri.includes('album')){
+            trackServices.deleteAlbum(token,id)
+            setPresentAlbums(false)
+        }
+        else if (uri.includes('track')){
+            trackServices.deleteTrack(token,id)
+            setPresentTracks(false)
+        }
+    }
+
     if (uri.includes('album')){
         return (
             <>
-                {inSavedAlbums ? <AiFillHeart/> : <AiOutlineHeart/>}
+                {inSavedAlbums ? <AiFillHeart onClick={() => handleUnlike()}/> : <AiOutlineHeart onClick={() => handleLike()}/>}
                 
             </>
         )
@@ -23,12 +47,11 @@ const LikeButton = ({token, uri}) => {
     else if (uri.includes('track')){
         return (
             <>
-                {inSavedTracks ? <AiFillHeart/> : <AiOutlineHeart/>}
+                {inSavedTracks ? <AiFillHeart onClick={handleUnlike}/> : <AiOutlineHeart onClick={handleLike}/>}
             
             </>
         )
     }
-    
 }
 
 LikeButton.propTypes = {

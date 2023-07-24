@@ -1,11 +1,10 @@
 
 import PropTypes from 'prop-types'
 import MostPlayed from '../components/RecentlyPlayed/MostPlayed'
-import Search from '../components/Search'
+import Search from '../components/Search/Search'
 import { Routes, Route } from 'react-router-dom'
 import IndividualAlbum from '../components/IndividualAlbum/IndividualAlbum'
 
-//<Route path='/:id' element={<IndividualAlbum token={token}/>}/>
 
 const MainSection = ({player, token}) => {
 
