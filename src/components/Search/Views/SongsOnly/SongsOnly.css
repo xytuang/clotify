@@ -36,4 +36,5 @@
 
 .songOnlyTracks:hover .onHover {
     display: inline-block;
+    color: #1DB954;
 }

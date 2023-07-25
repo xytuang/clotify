@@ -18,6 +18,9 @@
     background-color: rgb(28, 28, 28);
     margin: 5px;
 
+    color: inherit;
+    text-decoration: inherit;
+
     position: relative;
 }
 

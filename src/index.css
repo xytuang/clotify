@@ -12,6 +12,7 @@
     
 }
 
-.song {
-    background-color: grey;
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
 }

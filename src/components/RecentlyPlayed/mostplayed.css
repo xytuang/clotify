@@ -7,9 +7,36 @@
 .song {
     display: flex;
     align-items: center;
+    background-color: rgb(33, 33, 33);
+    border-radius: 3%;
+    position: relative;
 }
 
-.mostplayed-img {
+.song:hover {
+    background-color: rgb(47, 47, 47);
+}
+
+.song:hover .onHover{
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    color: #1DB954;
+    right: 15px;
+    top: 15px;
+}
+
+.text-link-specific {
+    display: flex;
     height: 100%;
-    width: auto;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.onHover {
+    display: none;
+}
+
+.song-name{
+    align-self: center;
+    justify-self: center
 }

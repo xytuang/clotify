@@ -8,8 +8,8 @@ const LeftSection = () => {
     return (
         <div>
             <div>
-                <Link to='/'><div><TiHome/>Home</div></Link>
-                <Link to='/search'><div><FaMagnifyingGlass/>Search</div></Link>
+                <Link className='text-link' to='/'><div><TiHome/>Home</div></Link>
+                <Link className='text-link' to='/search'><div><FaMagnifyingGlass/>Search</div></Link>
             </div>
             <Outlet/>
             <div>

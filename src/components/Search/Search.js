@@ -48,13 +48,13 @@ const Search = ({ token, player }) => {
             {search === '' ? <div></div> : 
                 <>
                     <div>
-                        <Link to=''><button>All</button></Link>
-                        <Link to='songs'><button>Songs</button></Link>
-                        <Link to='playlists'><button>Playlists</button></Link>
-                        <Link to='albums'><button>Albums</button></Link>
-                        <Link to='artists'><button>Artists</button></Link>
-                        <Link to='podcasts'><button>Podcasts</button></Link>
-                        <Link to='episodes'><button>Episodes</button></Link>
+                        <Link className='text-link' to=''><button>All</button></Link>
+                        <Link className='text-link' to='songs'><button>Songs</button></Link>
+                        <Link className='text-link' to='playlists'><button>Playlists</button></Link>
+                        <Link className='text-link' to='albums'><button>Albums</button></Link>
+                        <Link className='text-link' to='artists'><button>Artists</button></Link>
+                        <Link className='text-link' to='podcasts'><button>Podcasts</button></Link>
+                        <Link className='text-link' to='episodes'><button>Episodes</button></Link>
                     </div>
 
                     <Routes>
