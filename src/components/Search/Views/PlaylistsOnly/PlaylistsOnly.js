@@ -1,30 +1,24 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import trackServices from '../../../../services/trackServices'
 import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
 import './PlaylistsOnly.css'
 
 const PlaylistsOnly = ({playlists, token, player}) => {
-
-    const [is_paused, setPaused] = useState(true)
-    const [current_track_uri, setCurrentTrackURI] = useState('')
-
-    useEffect(() => {
-        player.getCurrentState().then(state => setCurrentTrackURI(state.track_window.current_track.uri))
-    }, [])
+    const status = useSelector(state => state.status.status)
+    const [current_playlist, setCurrentPlaylist] = useState(null)
 
     const handlePlay = async (playlist) => {
-        const playlistItems = await trackServices.getPlaylistItems(token, playlist.id)
-        const found = playlistItems.items.filter(item => item.uri === current_track_uri)
-        console.log(playlistItems.items.map(item => item.track.uri))
-        if (found.length === 0){
+        const is_current_playlist = playlist.uri === current_playlist
+        if (!is_current_playlist){
+            const playlistItems = await trackServices.getPlaylistItems(token, playlist.id)
             trackServices.playTrack(token, playlistItems.items.map(item => item.track.uri))
-            setPaused(false)
+            setCurrentPlaylist(playlist.uri)
         }
         else{
             player.togglePlay()
-            setPaused(!is_paused)
         }
     }
 
@@ -32,8 +26,11 @@ const PlaylistsOnly = ({playlists, token, player}) => {
         <div className='playlistsOnlyContainer'>
             {playlists.map(playlist => 
                 <div key={playlist.id} className='individualPlaylist'>
-                    {!is_paused ? <FaCirclePlay className='playButton' onClick={() => handlePlay(playlist)}/> : <AiOutlinePauseCircle className='playButton' onClick={() => handlePlay(playlist)}/>}
-
+                    {
+                        current_playlist === playlist.uri ? 
+                            status.paused ? <FaCirclePlay className='playButton' onClick={() => handlePlay(playlist)}/> : <AiOutlinePauseCircle className='playButton' onClick={() => handlePlay(playlist)}/>
+                            : <FaCirclePlay className='playButton' onClick={() => handlePlay(playlist)}/> 
+                    }
                     <img src={playlist.images[0].url}/>
                     <div>{playlist.name}</div>
                 </div>

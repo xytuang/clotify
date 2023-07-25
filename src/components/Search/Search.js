@@ -6,6 +6,10 @@ import { Route, Routes, Link } from 'react-router-dom'
 import SongsOnly from './Views/SongsOnly/SongsOnly'
 import PlaylistsOnly from './Views/PlaylistsOnly/PlaylistsOnly'
 import All from './Views/All/All'
+import AlbumsOnly from './Views/AlbumsOnly/AlbumsOnly'
+import ArtistsOnly from './Views/ArtistsOnly/ArtistsOnly'
+import PodcastsOnly from './Views/PodcastsOnly/PodcastsOnly'
+import EpisodesOnly from './Views/EpisodesOnly/EpisodesOnly'
 
 const Search = ({ token, player }) => {
     const [search, setSearch] = useState('')
@@ -47,12 +51,20 @@ const Search = ({ token, player }) => {
                         <Link to=''><button>All</button></Link>
                         <Link to='songs'><button>Songs</button></Link>
                         <Link to='playlists'><button>Playlists</button></Link>
+                        <Link to='albums'><button>Albums</button></Link>
+                        <Link to='artists'><button>Artists</button></Link>
+                        <Link to='podcasts'><button>Podcasts</button></Link>
+                        <Link to='episodes'><button>Episodes</button></Link>
                     </div>
 
                     <Routes>
                         <Route index element={<All songs={songs.slice(0,5)} artists={artists.slice(0,7)} albums={albums.slice(0,7)} podcasts={podcasts.slice(0,7)} episodes={episodes.slice(0,7)} playlists={playlists.slice(0,7)} handlePlay={handlePlay}/>}/>
                         <Route path='songs' element={<SongsOnly songs={songs} token={token} player={player}/>}/>
                         <Route path='playlists' element={<PlaylistsOnly playlists={playlists} token={token} player={player}/>}/>
+                        <Route path='albums' element={<AlbumsOnly albums={albums} token={token} player={player}/>}/>
+                        <Route path='artists' element={<ArtistsOnly artists={artists} token={token} player={player}/>}/>
+                        <Route path='podcasts' element={<PodcastsOnly podcasts={podcasts} token={token} player={player}/>}/>
+                        <Route path='episodes' element={<EpisodesOnly episodes={episodes} token={token} player={player}/>}/>
                     </Routes>
                     
                     
@@ -70,9 +82,3 @@ Search.propTypes = {
 }
 
 export default Search
-
-//<Link to='artists'><div>Artists</div></Link>
-//<Link to='albums'><div>Albums</div></Link>
-//<Link to='podcasts'><div>Podcasts</div></Link>
-//<Link to='episodes'><div>Episodes</div></Link>
-//songs={songs} token={token} player={player}

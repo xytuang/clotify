@@ -8,20 +8,21 @@ import './footer.css'
 import { useState } from 'react'
 import SongSlider from './SongSlider'
 import SongDetails from './SongDetails'
+import { useSelector } from 'react-redux'
 
 
-const Footer = ({current_track, player, is_paused, token}) => {
+const Footer = ({player, token}) => {
     const [volume, setVolume] = useState(1)
-
+    const track = useSelector(state => state.status)
     return (
         <div className='footer'>
             
-            <SongDetails current_track={current_track} token={token}/>
+            <SongDetails current_track={track.status.track_window.current_track} token={token}/>
 
             <div className='footer-center'>
                 <div>
                     <AiFillStepBackward  onClick={() => { player.previousTrack() }}/>
-                    {is_paused ? <FaCirclePlay onClick={() => { player.togglePlay() }}/> : <AiOutlinePauseCircle onClick={() => { player.togglePlay() }}/>}
+                    {track.status.paused ? <FaCirclePlay onClick={() => { player.togglePlay() }}/> : <AiOutlinePauseCircle onClick={() => { player.togglePlay() }}/>}
                     <AiFillStepForward onClick={() => { player.nextTrack() }}/>
                 </div>
                 <div>
@@ -37,9 +38,7 @@ const Footer = ({current_track, player, is_paused, token}) => {
 }
 
 Footer.propTypes = {
-    current_track: PropTypes.object.isRequired,
     player: PropTypes.object.isRequired,
-    is_paused: PropTypes.bool.isRequired,
     token: PropTypes.string.isRequired
 }
 

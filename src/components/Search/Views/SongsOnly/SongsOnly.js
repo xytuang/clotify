@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { useState, useEffect } from 'react'
 import { IoTimeOutline } from 'react-icons/io5'
 import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
@@ -8,27 +7,21 @@ import LikeButton from '../../../Buttons/LikeButton/LikeButton'
 
 import './SongsOnly.css'
 import trackServices from '../../../../services/trackServices'
+import { useSelector } from 'react-redux'
 
 const SongsOnly = ({songs, token, player}) => {
     let indexInSearch = 1
-    const [current_track_uri, setCurrentTrackURI] = useState('')
-    const [paused, setPaused] = useState(true)
+    const status = useSelector(state => state.status.status)
+    
 
-    useEffect(() => {
-        player.getCurrentState().then(state => {setCurrentTrackURI(state.track_window.current_track.uri); setPaused(state.paused)})
-        
-    }, [current_track_uri])
-    player.getCurrentState().then(state => setCurrentTrackURI(state.track_window.current_track.uri))
 
     const handlePlay = (uri) => {
-        const is_current_track = uri === current_track_uri
+        const is_current_track = uri === status.track_window.current_track.uri
         if (!is_current_track){
             trackServices.playTrack(token, [uri])
-            setPaused(false)
         }
         else{
             player.togglePlay()
-            setPaused(!paused)
         }
     }
 
@@ -42,8 +35,8 @@ const SongsOnly = ({songs, token, player}) => {
                     </span>
                     <span className='onHover'>
                         {
-                            song.uri === current_track_uri ? 
-                                paused ? <FaCirclePlay onClick={() => handlePlay(song.uri)}/> : <AiOutlinePauseCircle onClick={() => handlePlay(song.uri)}/>
+                            song.uri === status.track_window.current_track.uri ? 
+                                status.paused ? <FaCirclePlay onClick={() => handlePlay(song.uri)}/> : <AiOutlinePauseCircle onClick={() => handlePlay(song.uri)}/>
                                 : <FaCirclePlay onClick={() => handlePlay(song.uri)}/>
                         }
                         

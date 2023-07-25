@@ -4,25 +4,15 @@ import Footer from './components/Footer/Footer'
 import LeftSection from './containers/LeftSection'
 import MainSection from './containers/MainSection'
 import RightSection from './containers/RightSection'
-const track = {
-    name: '',
-    album: {
-        images: [
-            { url: '' }
-        ]
-    },
-    artists: [
-        { name: '' }
-    ]
-}
+import { useDispatch } from 'react-redux'
+import { setStatus } from './reducers/stateReducer'
 
 
 const WebPlayback = (props) => {
-    const [is_paused, setPaused] = useState(false)
     const [is_active, setActive] = useState(false)
-    const [current_track, setTrack] = useState(track)
     // eslint-disable-next-line no-unused-vars
     const [player, setPlayer] = useState(undefined)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const script = document.createElement('script')
@@ -39,6 +29,7 @@ const WebPlayback = (props) => {
             })
             setPlayer(player)
             player.addListener('ready', ({ device_id }) => {
+                
                 console.log('Ready with Device ID', device_id)
             })
     
@@ -47,14 +38,14 @@ const WebPlayback = (props) => {
             })
 
             player.addListener('player_state_changed', ( state => {
-
                 if (!state) {
                     return
                 }
-                setTrack(state.track_window.current_track)
-                setPaused(state.paused)
+                // setTrack(state.track_window.current_track)
                 player.getCurrentState().then( state => { 
-                    (!state)? setActive(false) : setActive(true) 
+                    (!state)? setActive(false) : setActive(true)
+                    dispatch(setStatus(state))
+                    console.log('dispatching state')
                 })
             }))
             
@@ -80,7 +71,7 @@ const WebPlayback = (props) => {
                         <MainSection token={props.token} player={player}/>
                         <RightSection/>
                     </div>
-                    <Footer player={player} current_track={current_track} is_paused={is_paused} token={props.token}/>
+                    <Footer player={player} token={props.token}/>
                 </div>
             </>
         )

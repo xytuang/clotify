@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { uiReducer } from './reducers/uiReducer'
+import playerReducer from './reducers/stateReducer'
+
 
 const store = configureStore({
     reducer: {
-        uiView: uiReducer
+        status: playerReducer
     }
 })
 
