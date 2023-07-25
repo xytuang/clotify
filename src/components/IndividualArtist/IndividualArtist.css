@@ -1,14 +1,12 @@
-.individualAlbumDetails {
+.individualArtistDetails {
     display: flex;
     color: white;
 }
 
-.individualAlbumTrackHeaders {
+.individualArtistTrackHeaders {
     display: grid;
     grid-template-columns: 1fr 6fr 3fr;
 }
-
-
 .normalPlayButton{
     color: #1DB954;    
 }

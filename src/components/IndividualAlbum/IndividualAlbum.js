@@ -6,6 +6,7 @@ import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
 import { HiOutlineArrowDownCircle } from 'react-icons/hi2'
 import { IoTimeOutline } from 'react-icons/io5'
+import { useSelector } from 'react-redux'
 
 import './IndividualAlbum.css'
 import FormattedTime from '../Footer/components/FormattedTime'
@@ -15,25 +16,22 @@ import LikeButton from '../Buttons/LikeButton/LikeButton'
 const IndividualAlbum = ({player, token}) => {
     const id = useParams().id
     const [album, setAlbum] = useState(null)
-    const [albumTracks, setAlbumTracks] = useState([])
-    const [current_track_uri, setCurrentTrackURI] = useState('')
-    const [is_paused, setPaused] = useState(true)
+    const status = useSelector(state => state.status.status)
     
 
     useEffect(() => {
-        trackServices.getAlbum(token, id).then(data => {setAlbum(data); setAlbumTracks(data.tracks.items.map(item => item.uri))})
-        player.getCurrentState().then(state => setCurrentTrackURI(state.track_window.current_track.uri))
+        trackServices.getAlbum(token, id).then(data => setAlbum(data))
     }, [])
 
-    const handlePlay = () => {
-        const found = album.tracks.items.filter(item => item.uri === current_track_uri)
-        if (found.length === 0){
-            trackServices.playTrack(token, albumTracks)
-            setPaused(false)
+    const handlePlay = async () => {
+        const current_album = id === status.track_window.current_track.album.uri.substring(14)
+        if (!current_album){
+            const album = await trackServices.getAlbum(token, id)
+            const uris = album.tracks.items.map(item => item.uri)
+            trackServices.playTrack(token, uris)
         }
         else{
             player.togglePlay()
-            setPaused(!is_paused)
         }
     }
 
@@ -53,8 +51,15 @@ const IndividualAlbum = ({player, token}) => {
                     <div>{album.artists.map(artist => <span key={artist.id}>{artist.name} . </span>)} {album.release_date} . {album.total_tracks} song</div>
                 </div>
             </div>
-            <div>{!is_paused ? <FaCirclePlay onClick={handlePlay}/> : <AiOutlinePauseCircle onClick={handlePlay}/>} <LikeButton token={token} uri={album.uri}/> <HiOutlineArrowDownCircle/></div>
-            <div className='IndividualAlbumTracks'>
+            <div>
+                {
+                    id === status.track_window.current_track.album.uri.substring(14) ?
+                        status.paused ? <FaCirclePlay className='normalPlayButton' onClick={handlePlay}/> : <AiOutlinePauseCircle className='normalPlayButton' onClick={handlePlay}/>
+                        : <FaCirclePlay className='normalPlayButton' onClick={handlePlay}/>
+                }
+                <LikeButton token={token} uri={album.uri}/> <HiOutlineArrowDownCircle/>
+            </div>
+            <div>
                 <div>
                     <div className='individualAlbumTrackHeaders'><span>#</span> <span>Title</span> <span><IoTimeOutline/></span></div>
                     {album.tracks.items.map(item => <div key={item.id} className='individualAlbumTrackHeaders'><span>{item.track_number}</span> <span>{item.name}</span> <span><LikeButton token={token} uri={item.uri}/><FormattedTime numSeconds={item.duration_ms/1000}/></span></div>)}

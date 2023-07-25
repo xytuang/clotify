@@ -1,0 +1,42 @@
+.IndividualPlaylistContainer {
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.individualPlaylistDetails {
+    display: flex;
+    color: white;
+}
+
+.individualPlaylistTrackHeaders {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+}
+
+.individualPlaylistTracks {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    margin: 10px;
+}
+
+.normalPlayButton{
+    color: #1DB954;    
+}
+
+
+
+.onHover {
+    display: none;
+}
+
+.individualPlaylistTracks:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.individualPlaylistTracks:hover .default {
+    display: none;
+}
+
+.individualPlaylistTracks:hover .onHover {
+    display: inline-block;
+}

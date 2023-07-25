@@ -26,7 +26,7 @@ const SongsOnly = ({songs, token, player}) => {
     }
 
     return (
-        <div>
+        <div className='songOnlyContainer'>
             <div className='songOnlyHeaders'><span>#</span> <span>Title</span><span>Album</span><span><IoTimeOutline/></span></div>
             {songs.map(song => 
                 <div key={song.id} className='songOnlyTracks'>

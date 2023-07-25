@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
-
+import { Link } from 'react-router-dom'
 import trackServices from '../../../../services/trackServices'
 
 import './ArtistsOnly.css'
@@ -26,7 +26,7 @@ const ArtistsOnly = ({artists, token, player}) => {
     return (
         <div className='artistsOnlyContainer'>
             {artists.map(artist => 
-                <div key={artist.id} className='individualArtist'>
+                <Link to={`../../artist/${artist.id}`} key={artist.id} className='individualArtist'>
                     {
                         status.track_window.current_track.artists.filter(item => item.uri === artist.uri).length !== 0 ?
                             status.paused ? <FaCirclePlay className='playButton' onClick={() => handlePlay(artist.uri)}/> : <AiOutlinePauseCircle className='playButton' onClick={() => handlePlay(artist.uri)}/>
@@ -34,7 +34,7 @@ const ArtistsOnly = ({artists, token, player}) => {
                     }
                     <img src={artist.images[0].url}/>
                     <div>{artist.name}</div>
-                </div>
+                </Link>
             )}
         </div>
     )

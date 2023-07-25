@@ -1,6 +1,8 @@
 .episodesOnlyContainer{
     display: flex;
     flex-wrap: wrap;
+    height: 90%;
+    overflow-y: scroll;
 }
 
 .individualEpisode {

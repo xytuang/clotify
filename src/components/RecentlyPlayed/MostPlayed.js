@@ -22,7 +22,7 @@ const MostPlayed = ({ token}) => {
             <div className='mostplayed'>
                 {mostPlayed.map(song => 
                     <div className='song' key={song.id}>
-                        <Link to={`/${song.album.id}`}>
+                        <Link to={`/album/${song.album.id}`}>
                             <img className='mostplayed-img' src={song.album.images[2].url}/>
                             <span className='song-name'>{song.name}</span>
                         </Link>

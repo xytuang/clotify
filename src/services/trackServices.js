@@ -116,6 +116,15 @@ const getPlaylistItems = async (token, id) => {
     return response.data
 }
 
+const getPlaylist = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/playlists/${id}`, config)
+    return response.data
+}
+
+
 const getArtistTopTracks = async (token, id) => {
     const config = {
         headers : { Authorization: `Bearer ${token}`}
@@ -142,6 +151,7 @@ export default
     deleteTrack,
     checkSavedTracks,
     checkSavedAlbums,
+    getPlaylist,
     getPlaylistItems,
     getArtistTopTracks
 }

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import trackServices from '../../../../services/trackServices'
 import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 import './PlaylistsOnly.css'
 
 const PlaylistsOnly = ({playlists, token, player}) => {
@@ -25,7 +26,7 @@ const PlaylistsOnly = ({playlists, token, player}) => {
     return (
         <div className='playlistsOnlyContainer'>
             {playlists.map(playlist => 
-                <div key={playlist.id} className='individualPlaylist'>
+                <Link to={`../../playlist/${playlist.id}`} key={playlist.id} className='individualPlaylist'>
                     {
                         current_playlist === playlist.uri ? 
                             status.paused ? <FaCirclePlay className='playButton' onClick={() => handlePlay(playlist)}/> : <AiOutlinePauseCircle className='playButton' onClick={() => handlePlay(playlist)}/>
@@ -33,7 +34,7 @@ const PlaylistsOnly = ({playlists, token, player}) => {
                     }
                     <img src={playlist.images[0].url}/>
                     <div>{playlist.name}</div>
-                </div>
+                </Link>
             )}
         </div>
     )

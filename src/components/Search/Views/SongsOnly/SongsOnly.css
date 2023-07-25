@@ -1,3 +1,8 @@
+.songOnlyContainer {
+    height: 80%;
+    overflow-y: scroll;
+}
+
 .songOnlyHeaders {
     display: grid;
     grid-template-columns: 1fr 5fr 2fr 1fr;
