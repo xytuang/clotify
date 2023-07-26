@@ -26,7 +26,7 @@ const generateRandomString = (length) => {
 }
 
 app.get('/auth/login', (req, res) => {
-    const scope = 'streaming user-read-email user-read-private user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing user-library-read user-library-modify'
+    const scope = 'streaming user-read-email user-read-private user-top-read user-read-playback-state user-modify-playback-state user-read-currently-playing user-library-read user-library-modify playlist-read-private'
     
     const state = generateRandomString(16)
 

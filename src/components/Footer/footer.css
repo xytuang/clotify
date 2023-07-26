@@ -1,6 +1,6 @@
 .footer {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 2fr 5fr 1fr;
     background-color: #191414;
     color: white;
     margin-top: auto;
@@ -35,4 +35,8 @@ input {
 
 .progress-bar:hover {
     accent-color: #1DB954
+}
+
+.repeat-button {
+    color: #1DB954
 }

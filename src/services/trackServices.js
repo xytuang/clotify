@@ -3,12 +3,12 @@ import axios from 'axios'
 const baseUrl = 'https://api.spotify.com/v1'
 
 
-const getUsersTopTracks = async (token) => {
+const getUsersTopItems = async (token, type) => {
     
     const config = {
         headers : { Authorization: `Bearer ${token}`}
     }
-    const response = await axios.get(`${baseUrl}/me/top/tracks?limit=6`, config)
+    const response = await axios.get(`${baseUrl}/me/top/${type}?limit=20`, config)
     return response.data
 }
 
@@ -76,6 +76,16 @@ const getSavedAlbums = async (token) => {
     return response.data
 }
 
+const getSavedPlaylists = async (token) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/me/playlists?limit=50`, config)
+    return response.data
+}
+
+
+
 const saveAlbum = (token, id) => {
     axios({ url: `${baseUrl}/me/albums/?ids=${id}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
 }
@@ -133,10 +143,34 @@ const getArtistTopTracks = async (token, id) => {
     return response.data
 }
 
+const repeatSetter = (token, state) => {
+    axios({ url: `${baseUrl}/me/player/repeat?state=${state}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
+}
+
+const togglePlaybackShuffle = (token, state) => {
+    axios({ url: `${baseUrl}/me/player/shuffle?state=${state}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
+}
+
+const getAvailableGenreSeeds = async (token) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/recommendations/available-genre-seeds`, config)
+    return response.data
+}
+
+const getRecommendations = async (token, type, items) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/recommendations?limit=20&${type}=${items}`, config)
+    return response.data
+}
+
 
 export default 
 { 
-    getUsersTopTracks, 
+    getUsersTopItems, 
     playTrack, 
     find,
     adjustVolume, 
@@ -145,6 +179,7 @@ export default
     getAlbum, 
     getSavedTracks, 
     getSavedAlbums,
+    getSavedPlaylists,
     saveAlbum,
     saveTrack,
     deleteAlbum,
@@ -153,5 +188,9 @@ export default
     checkSavedAlbums,
     getPlaylist,
     getPlaylistItems,
-    getArtistTopTracks
+    getArtistTopTracks,
+    repeatSetter,
+    togglePlaybackShuffle,
+    getAvailableGenreSeeds,
+    getRecommendations
 }

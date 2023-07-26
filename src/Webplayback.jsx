@@ -67,7 +67,7 @@ const WebPlayback = (props) => {
             <>
                 <div>
                     <div className='app'>
-                        <LeftSection/>
+                        <LeftSection token={props.token}/>
                         <MainSection token={props.token} player={player}/>
                         <RightSection/>
                     </div>

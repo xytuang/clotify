@@ -1,0 +1,23 @@
+.savedLibraryItems {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    overflow: scroll;
+}
+
+.oneLibraryItem{
+    display: flex;
+    align-items: center;
+    margin: 16px;
+    border-radius: 3%;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.img-only {
+    width: fit-content;
+}
+
+.oneLibraryItem:hover {
+    background-color: rgb(47, 47, 47);
+}

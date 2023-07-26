@@ -10,6 +10,7 @@ import AlbumsOnly from './Views/AlbumsOnly/AlbumsOnly'
 import ArtistsOnly from './Views/ArtistsOnly/ArtistsOnly'
 import PodcastsOnly from './Views/PodcastsOnly/PodcastsOnly'
 import EpisodesOnly from './Views/EpisodesOnly/EpisodesOnly'
+import { useSelector } from 'react-redux'
 
 const Search = ({ token, player }) => {
     const [search, setSearch] = useState('')
@@ -19,6 +20,8 @@ const Search = ({ token, player }) => {
     const [playlists, setPlaylists] = useState([])
     const [episodes, setEpisodes] = useState([])
     const [podcasts, setPodcasts] = useState([])
+
+    const status = useSelector(state => state.status.status)
 
     useEffect(() => {
         if (search !== ''){
@@ -39,9 +42,14 @@ const Search = ({ token, player }) => {
     }
 
     const handlePlay = (uri) => {
-        trackServices.playTrack(token, [uri])
+        const is_current_track = uri === status.track_window.current_track.uri
+        if (!is_current_track){
+            trackServices.playTrack(token, [uri])
+        }
+        else{
+            player.togglePlay()
+        }
     }
-    
     return (
         <div className='searchContainer'>
             <input value={search} onChange={handleSearch} placeholder='What do you want to listen to?'/>
@@ -66,8 +74,6 @@ const Search = ({ token, player }) => {
                         <Route path='podcasts' element={<PodcastsOnly podcasts={podcasts} token={token} player={player}/>}/>
                         <Route path='episodes' element={<EpisodesOnly episodes={episodes} token={token} player={player}/>}/>
                     </Routes>
-                    
-                    
                 </>
             }
             

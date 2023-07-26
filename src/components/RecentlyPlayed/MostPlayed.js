@@ -11,7 +11,7 @@ const MostPlayed = ({ token}) => {
     const [mostPlayed, setMostPlayed] = useState([])
 
     useEffect(() => {
-        trackServices.getUsersTopTracks(token).then(songs => setMostPlayed(songs.items))
+        trackServices.getUsersTopItems(token, 'tracks').then(songs => setMostPlayed(songs.items))
     }, [])
 
     const handlePlay = async (id) => {
@@ -25,7 +25,7 @@ const MostPlayed = ({ token}) => {
         <div>
             <div>Your favourites</div>
             <div className='mostplayed'>
-                {mostPlayed.map(song => 
+                {mostPlayed.slice(0,6).map(song => 
                     <div className='song' key={song.id}>
                         <Link className='text-link-specific' to={`/album/${song.album.id}`}>
                             <span className='onHover'><FaCirclePlay onClick={() => handlePlay(song.album.id)}/></span>

@@ -1,0 +1,9 @@
+.right {
+    flex: 0 0 20%;
+    display: flex;
+    margin: 10px;
+}
+
+.invisible {
+    display: none;
+}

@@ -1,7 +1,5 @@
 .app {
-    display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr min-content;
+    display: flex;
     background-color: #191414;
     color: white;
     width: 100vw;
@@ -9,8 +7,14 @@
     padding-top: 10px;
     padding-bottom: 10px;
     overflow: hidden;
-    
 }
+
+
+
+.hideLeft {
+    display: none;
+}
+
 
 .text-link {
     color: inherit;

@@ -1,6 +1,10 @@
 .songsSearchResult {
     display: flex;
     padding: 5px;
+    position: relative;
+}
+.onHoverPlay {
+    display: none;
 }
 
 .oneSongSearchResult {
@@ -15,3 +19,16 @@
 .oneSongSearchResult:hover {
     background-color: rgb(50, 50, 50);
 }
+
+.songsSearchResult:hover .onHoverPlay{
+    display: inline-block;
+    position: absolute;
+    left: 3%;
+    top: 45%;
+    size: 10x;
+}
+
+.songsSearchResult:hover .songSearchResultImg{
+    opacity: 0.5;
+}
+

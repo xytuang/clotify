@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState, useEffect } from'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import trackServices from '../../services/trackServices'
 import { FaCirclePlay } from 'react-icons/fa6'
 import { AiOutlinePauseCircle } from 'react-icons/ai'
@@ -21,7 +21,7 @@ const IndividualAlbum = ({player, token}) => {
 
     useEffect(() => {
         trackServices.getAlbum(token, id).then(data => setAlbum(data))
-    }, [])
+    }, [id])
 
     const handlePlay = async () => {
         const current_album = id === status.track_window.current_track.album.uri.substring(14)
@@ -48,7 +48,7 @@ const IndividualAlbum = ({player, token}) => {
                 <div>
                     <div>{album.album_type}</div>
                     <div>{album.name}</div>
-                    <div>{album.artists.map(artist => <span key={artist.id}>{artist.name} . </span>)} {album.release_date} . {album.total_tracks} song</div>
+                    <div>{album.artists.map(artist => <Link className='text-link' to={`../../artist/${artist.id}`} key={artist.id}>{artist.name} . </Link>)} {album.release_date} . {album.total_tracks} song</div>
                 </div>
             </div>
             <div>
