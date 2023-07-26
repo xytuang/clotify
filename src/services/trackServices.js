@@ -163,7 +163,7 @@ const getRecommendations = async (token, type, items) => {
     const config = {
         headers : { Authorization: `Bearer ${token}`}
     }
-    const response = await axios.get(`${baseUrl}/recommendations?limit=20&${type}=${items}`, config)
+    const response = await axios.get(`${baseUrl}/recommendations?limit=100&${type}=${items}`, config)
     return response.data
 }
 

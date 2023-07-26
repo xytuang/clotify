@@ -1,0 +1,40 @@
+.RecommendationDisplayContainer {
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.individualPlaylistDetails {
+    display: flex;
+    color: white;
+}
+
+.RecommendationDisplayHeaders {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+}
+
+.RecommendationDisplayTracks {
+    display: grid;
+    grid-template-columns: 1fr 6fr 1fr;
+    margin: 10px;
+}
+
+.normalPlayButton{
+    color: #1DB954;    
+}
+
+.onHover {
+    display: none;
+}
+
+.RecommendationDisplayTracks:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.RecommendationDisplayTracks:hover .default {
+    display: none;
+}
+
+.RecommendationDisplayTracks:hover .onHover {
+    display: inline-block;
+}
