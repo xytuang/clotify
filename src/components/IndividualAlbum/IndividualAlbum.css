@@ -1,3 +1,8 @@
+.individualAlbumContainer {
+    overflow: scroll;
+    height: 90vh;
+}
+
 .individualAlbumDetails {
     display: flex;
     color: white;

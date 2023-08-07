@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import './IndividualAlbum.css'
 import FormattedTime from '../Footer/components/FormattedTime'
 import LikeButton from '../Buttons/LikeButton/LikeButton'
+import ArtistAlbums from '../ArtistAlbums/ArtistAlbums'
 
 
 const IndividualAlbum = ({player, token}) => {
@@ -42,11 +43,11 @@ const IndividualAlbum = ({player, token}) => {
     }
 
     return (
-        <div>
+        <div className='individualAlbumContainer'>
             <div className='individualAlbumDetails'>
                 <img src={album.images[2].url}/>
                 <div>
-                    <div>{album.album_type}</div>
+                    <div>{album.album_type[0].toUpperCase() + album.album_type.slice(1)}</div>
                     <div>{album.name}</div>
                     <div>{album.artists.map(artist => <Link className='text-link' to={`../../artist/${artist.id}`} key={artist.id}>{artist.name} . </Link>)} {album.release_date} . {album.total_tracks} song</div>
                 </div>
@@ -64,8 +65,8 @@ const IndividualAlbum = ({player, token}) => {
                     <div className='individualAlbumTrackHeaders'><span>#</span> <span>Title</span> <span><IoTimeOutline/></span></div>
                     {album.tracks.items.map(item => <div key={item.id} className='individualAlbumTrackHeaders'><span>{item.track_number}</span> <span>{item.name}</span> <span><LikeButton token={token} uri={item.uri}/><FormattedTime numSeconds={item.duration_ms/1000}/></span></div>)}
                 </div>
-                
             </div>
+            <ArtistAlbums album={album} token={token}/>    
         </div>
         
     )

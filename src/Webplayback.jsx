@@ -45,7 +45,6 @@ const WebPlayback = (props) => {
                 player.getCurrentState().then( state => { 
                     (!state)? setActive(false) : setActive(true)
                     dispatch(setStatus(state))
-                    console.log('dispatching state')
                 })
             }))
             

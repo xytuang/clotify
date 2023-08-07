@@ -143,6 +143,15 @@ const getArtistTopTracks = async (token, id) => {
     return response.data
 }
 
+const getArtistAlbums = async (token, id) => {
+    const config = {
+        headers : { Authorization: `Bearer ${token}`}
+    }
+    const response = await axios.get(`${baseUrl}/artists/${id}/albums`, config)
+    return response.data
+}
+
+
 const repeatSetter = (token, state) => {
     axios({ url: `${baseUrl}/me/player/repeat?state=${state}`, method: 'put', headers: { Authorization: `Bearer ${token}`} })
 }
@@ -168,6 +177,8 @@ const getRecommendations = async (token, type, items) => {
 }
 
 
+
+
 export default 
 { 
     getUsersTopItems, 
@@ -189,6 +200,7 @@ export default
     getPlaylist,
     getPlaylistItems,
     getArtistTopTracks,
+    getArtistAlbums,
     repeatSetter,
     togglePlaybackShuffle,
     getAvailableGenreSeeds,

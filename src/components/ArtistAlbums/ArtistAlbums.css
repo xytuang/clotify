@@ -1,0 +1,8 @@
+.artist-albums {
+    margin-top: 10vh;
+}
+
+.albumCardContainer {
+    display: flex;
+    justify-content: space-between;
+}

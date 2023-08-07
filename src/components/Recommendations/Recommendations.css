@@ -1,5 +1,27 @@
 .recommendations {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 10vh;
+    justify-content: space-between;
+    margin-bottom: 10vh;
+}
+
+
+.recommendation-link {
+    color: inherit;
+    text-decoration: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 3%;
+}
+
+.recommendation-link:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.recommendation-cover {
+    width: 120px;
+    height: auto;
 }

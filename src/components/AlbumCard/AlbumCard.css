@@ -1,0 +1,28 @@
+.album-card {
+    color: inherit;
+    text-decoration: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+    border-radius: 3%;
+    
+}
+
+.album-card:hover{
+    background-color: rgb(50, 50, 50);
+}
+
+.album-cover {
+    width: 140px;
+    height: auto;
+}
+
+.album-name {
+    width: 140px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
